@@ -14,9 +14,11 @@ function draw() {
   //resizeCanvas(sin(w)*wSize, cos(h)*hSize);
 }
 
+
+
 class pixel {
-  constructor(){
-    
+  constructor(x,y,colour){
+
   }
 }
   
