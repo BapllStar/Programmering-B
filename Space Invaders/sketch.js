@@ -5,7 +5,7 @@ let hSize = 500
 
 function setup() {
   createCanvas(wSize, hSize);
-  background(255);
+  background(40);
 }
 
 function draw() {
@@ -13,3 +13,10 @@ function draw() {
   //w++; h++;
   //resizeCanvas(sin(w)*wSize, cos(h)*hSize);
 }
+
+class pixel {
+  constructor(){
+    
+  }
+}
+  
