@@ -1,6 +1,6 @@
 # Christoffer Stæhr Sander's School Projects Repository
 
-![Sukkertoppen HTX Gymnasium Logo](https://nyuddannet.dk/images/dynamic/company/logo/custom/33115/)
+![Sukkertoppen HTX Gymnasium Logo](https://via.ritzau.dk/data/images/00407/02602f54-89dc-47a6-8cd6-69701133393b.png)
 
 ## About Me
 
