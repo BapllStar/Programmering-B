@@ -126,6 +126,8 @@ diana.displayDescendants()
 
 
 # Checking
+print("\n")
+
 are_related(erik, alfred)
 are_related(anna, anders)
 are_related(daisy, ellen)
