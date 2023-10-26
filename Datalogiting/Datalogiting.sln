@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Datalogiting", "Datalogiting\Datalogiting.pyproj", "{07134114-5E55-485C-90CB-C72BC4A3E70C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07134114-5E55-485C-90CB-C72BC4A3E70C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07134114-5E55-485C-90CB-C72BC4A3E70C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F2DE432C-B7B5-4061-9FA5-59C8B1A7427F}
+	EndGlobalSection
+EndGlobal
