@@ -138,7 +138,19 @@ classDiagram
         +ToString()
         +Calculate()
     }
-	
+	class MultiplicationEquation{
+		-operation: "*"
+        -children: list<Equation>
+        -value: string
+        -parent: None
+        +__init__(operation, value, parent)
+        +Add(operation, value)
+        +AddNum(num)
+        +ToString()
+        +Calculate()
+	}
+	MultiplicationEquation --> Equation
+	note right for Equation "test"
 ```
 ## Udviklingsprocessen
 Jeg startede med at researche omkring forskellige design patterns, men valgte ikke et før, jeg vidste, hvad jeg ville arbejde med.
