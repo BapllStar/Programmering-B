@@ -1,4 +1,5 @@
 # Learning Application
+Dette er et eksempel til Marcus
 I dette dokument, kan du læse om [mit projekt](https://github.com/BapllStar/Programmering-B/tree/main/Learning-Application).
 ## Programmets formål
 Jeg vil udvikle en app, der træner dens brugere i hovedregning. Dette gøres ved at holde en score for, hvor godt brugeren klarer sig, og give opgaver, der svarer til nivauet. 
