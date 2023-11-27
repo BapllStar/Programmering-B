@@ -99,6 +99,8 @@ class Equation:
 
         # The Builder pattern returns self so I can chain methods:
         return self
+
+	# Mere kode...
 ```
 
 Og her vises den udnyttet i programmet:
@@ -120,6 +122,23 @@ first_dict = {
     14: Equation("+").Add(6).Add(1),   
     15: Equation("-").Add(8).Add(5)    
 }
+```
+
+Min klasse kan også vises ved hjælp af et klassediagram:
+```mermaid
+classDiagram
+    class Equation {
+        -operation: string
+        -children: list<Equation>
+        -value: string
+        -parent: Equation
+        +__init__(operation, value, parent)
+        +Add(operation, value)
+        +AddNum(num)
+        +ToString()
+        +Calculate()
+    }
+	
 ```
 ## Udviklingsprocessen
 Jeg startede med at researche omkring forskellige design patterns, men valgte ikke et før, jeg vidste, hvad jeg ville arbejde med.
