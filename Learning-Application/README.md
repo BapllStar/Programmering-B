@@ -128,10 +128,10 @@ Min klasse kan også vises ved hjælp af et klassediagram:
 ```mermaid
 classDiagram
     class Equation {
-        -operation: string
-        -children: list<Equation>
-        -value: string
-        -parent: Equation
+        +operation: string
+        +children: list<Equation>
+        +value: string
+        +parent: Equation
         +__init__(operation, value, parent)
         +Add(operation, value)
         +AddNum(num)
@@ -139,21 +139,54 @@ classDiagram
         +Calculate()
     }
 	class MultiplicationEquation{
-		-operation: "*"
-        -children: list<Equation>
-        -value: string
-        -parent: None
-        +__init__(operation, value, parent)
-        +Add(operation, value)
-        +AddNum(num)
-        +ToString()
-        +Calculate()
+		+operation: "*"
+        +children: list<Equation>
+        +value: ""
+        +parent: None
+        ===||==()
 	}
-	MultiplicationEquation --> Equation
-	note right for Equation "test"
+	class value{
+	" * "
+	}
+	class children{
+		0 : Equation
+		1 : Equation
+		2 : Equation
+	}
+	class 0Equation{
+		+operation: ""
+        +children: []
+        +value: "2"
+        +parent: MultiplicationEquation
+        ===||==()
+	}
+	class 1Equation{
+		+operation: "+"
+        +children: list<Equation>
+        +value: ""
+        +parent: MultiplicationEquation
+        ===||==()
+	}
+	class 2Equation{
+		+operation: ""
+        +children: []
+        +value: "6"
+        +parent: MultiplicationEquation
+        ===||==()
+	}
+	Equation <-- MultiplicationEquation : Intance of
+	MultiplicationEquation <.. value
+	MultiplicationEquation <.. children
+	children <.. 0Equation
+	children <.. 1Equation
+	children <.. 2Equation
+	
 ```
+
+
+
 ## Udviklingsprocessen
-Jeg startede med at researche omkring forskellige design patterns, men valgte ikke et før, jeg vidste, hvad jeg ville arbejde med.
+Jeg startede med at researche omkring forskellige design patterns, men valgte ikke et før, jeg vidste, hvad jeg ville arb}ejde med.
 Efter at have fundet ud af det, brugte jeg mit design pattern til at skrive en masse regnestykker, som brugerne kan løse. Dette har jeg brugt Builder Pattern til.
 
 ## Brugergrænsefladen
