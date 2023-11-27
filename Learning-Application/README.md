@@ -145,9 +145,6 @@ classDiagram
         +parent: None
         ===||==()
 	}
-	class value{
-	" * "
-	}
 	class children{
 		0 : Equation
 		1 : Equation
@@ -175,7 +172,6 @@ classDiagram
         ===||==()
 	}
 	Equation <-- MultiplicationEquation : Intance of
-	MultiplicationEquation <.. value
 	MultiplicationEquation <.. children
 	children <.. 0Equation
 	children <.. 1Equation
