@@ -13,7 +13,7 @@ def connect():
     try:
         conn = mysql.connector.connect(host='localhost',
                                        database='bapll',
-                                       user='Bapll',
+                                       user='bapll',
                                        password='1234')
     except Error as e:
         print("fejl")
@@ -34,6 +34,12 @@ def login():
     conn = connect()
     if not conn.is_connected(): return
     logged_in = False
+
+def evaluate_password(p):
+    import re
+
+    regex = r"(?=.*[a-zæøå])(?=.*[A-ZÆØÅ])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':\"\\|,.<>\/?])(?!.*\s)(?=.*Batman)(?=.*XD)(?=.*69)(?=.*420).{8,22}"
+    return bool(re.match(regex, p))
 
 
 def register():
@@ -60,12 +66,18 @@ def register():
 
     passwordready = False
     while not passwordready:
+        print("Password Requirements: \n- At least one upper case letter\n- At least one lower case letter\n- At least one number\n- At least one special character\n- At least 8 characters long\n- At most 22 characters long\n- All of the following words: Batman, XD, 69, 420")
         pw = input("password: ")
-        pw2 = input("Repeat Password: ")
-        if (pw == pw2): passwordready = True
+        if (evaluate_password(pw)):
+            pw2 = input("Repeat Password: ")
+            if (pw == pw2): passwordready = True
+            else: 
+                clear()
+                print("Passwords don't match!")
         else: 
             clear()
-            print("Passwords don't match!")
+            print("Password does not meet requirements! Try again")
+        
 
     clear()
 
