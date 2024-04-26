@@ -397,3 +397,5 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 Neural Network/mnist_train.csv
+ProgEksamen/mnist_test.csv
+ProgEksamen/mnist_train.csv
