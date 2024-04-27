@@ -1,0 +1,133 @@
+class FF arver fra Lag{
+    constructor (inputstørrelse, outputstørrelse){
+        vægte = ny matrix fra outputstørrelse x inputstørrelse
+        biaser = ny vektor fra outputstørrelse
+
+        partielle afledte af vægte og biaser er tomme tensore, der matcher facon på deres modpart.
+
+        iterationer = 0
+    }
+
+    frem(input){
+        Udregn matrix-vektor produktet af vægte og input
+        Udregn output ved at lægge biaser til
+
+        gem input og output
+
+        return output
+    }
+
+    tilbage(pa_output){
+        partielle afledte af vægte += matrix-vektor produktet af pa_output og input
+        partielle afledte af biaser += pa_output
+
+        partielle afledte af input = matrix-vektor produktet af vægte og pa_output
+        // Dette skal bruges til at udregne de partielle afledte af inputtet til det forrige lag
+
+        iterationer += 1
+        // vi tæller op, så vi kan tage gennemsnittet af de partielle afledte, da jeg vil køre mini-batches
+
+        return partielle afledte af input
+    }
+
+    // update bliver kaldt efter en Epoke under træning
+    update(skridt_længde){
+        trænede parametre -= (sum af alle gradienter i batch)/iterationer * skridt_længde
+        // Vi trækker fra, da vi vil gå mod minimum, fremfor maksimum
+
+        nulstil partielle afledte af vægte og biaser
+        nulstil iterationer
+        // Vi nulstiller de partielle afledte og antallet af iterationer, så vi er klar til næste Epoke
+    }
+}
+
+
+
+
+class FF(Lag):
+    def __init__(self, n_input : int, n_output : int) -> None:
+
+        # Her er n_input antallet af neuroner i det forrige lag, og n_output
+        # er antallet af neuroner i det næste lag.
+        # Dett skal jeg bruge for at vide, hvilket facon vægte og biaser skal have.
+        
+        self.w = np.random.randn(n_output, n_input).astype(np.float64)
+        # w er vægtene. De er initialiseret til at være tilfældige tal. Vægte er
+        # opbygget til at være samlet i en matrix, hvor højde er antaller af
+        # neuroner i det næste lag, og bredde er antallet af neuroner i det forrige lag.
+        # Vægte bliver ganget på inputtet i frem() metoden.
+        
+        self.b = np.random.randn(n_output, 1).astype(np.float64)
+        # b er biaserne. De er initialiseret til at være tilfældige tal. Biaser er
+        # opbygget til at være en vektor, hvor højden er antallet af neuroner
+        # i det næste lag.
+        # Biaser bliver lagt til vægtene i frem() metoden.
+
+        self.pa_w = np.zeros_like(self.w).astype(np.float64)
+        self.pa_b = np.zeros_like(self.b).astype(np.float64)
+        # Disse variabler er sat til None, da de først bliver brugt i tilbage() og update() metoden.
+
+        self.iterations = 0
+        pass
+    
+    def frem(self, input) -> np.ndarray:
+
+        # Normalt ville man have en aktiveringsfunktion her, men dette kan også gøres
+        # som et separat lag. Derfor er det udeladt her for at gøre det mere fleksibelt.
+
+        vægtet = np.dot(self.w, input)
+        # Inputtet ganges med vægtene, for at udregne outputtet. Dette gøres ved at
+        # lave en matrix-transformation af inputvektoren.
+
+        
+        forskudt = vægtet + self.b
+        # Biasvektoren lægges til det vægtede input. Dette kan forskyde 
+
+
+        self.input = input
+        self.output = forskudt
+        # Inputtet gemmes, så det kan bruges i tilbage() metoden.
+
+        return forskudt
+
+    def tilbage(self, pa_output) -> np.ndarray:
+        if debug: print("FF tilbage")
+        
+        self.pa_w += np.dot(pa_output, self.input.T)
+        # Hvis man differencerer frem() metoden med hensyn til vægtene, finder man at
+        # resultatet er inputtet ganget med partielle afledte af outputtet.
+        # Vi transponerer inputtet, da det er en kolonnevektor, så resultatet bliver 
+        # en matrix, der passer til vægtenes facon.
+
+        self.pa_b += pa_output # * 1
+        # Da biasene kun adderes på, er den partielle afledte af biaserne lig med 1.
+
+        # Vi gemmer de partielle afledte, så de kan bruges i update() metoden. Grunden til at
+        # vi ikke opdaterer vægtene og biaserne med det samme, er at vi gerne vil køre mini-batches.
+        # Dette betyder at vi først vil køre en række input igennem, og derefter opdatere vægtene og biaserne.
+
+        pa_input = np.dot(self.w.T, pa_output)
+        # I denne metode har vi brugt pa_output fra det næste lag, til at udregne de ændringer,
+        # vi skal lave til vægtene og biaserne. Vi skal også bruge et pa_output til det forrige lag.
+        # Da inputtet ganges med vægtene, for at udregne outputtet, er den partielle afledte af inputtet
+        # lig med vægtene ganget med pa_output fra det næste lag. Vi transponerer vægtene, for at få
+        # de så matcher til outputtet.
+
+        self.iterations += 1
+
+        return pa_input
+    
+    def update(self, skridt_længde):
+
+        self.w -= skridt_længde * (self.pa_w/self.iterations)
+        self.b -= skridt_længde * (self.pa_b/self.iterations)
+        # Vægtene og biaserne opdateres ved at trække den partielle afledte af vægtene
+        # Da vi vil gå mod minimum, fremfor maksimum, trækker vi fra, og ganger
+        # med skridtlængden.
+
+        self.pa_w = np.zeros_like(self.w).astype(np.float64)
+        self.pa_b = np.zeros_like(self.b).astype(np.float64)
+        # Vi nulstiller de partielle afledte, så de er klar til næste Epoke.
+
+        self.iterations = 0
+        # Vi nulstiller antallet af iterationer, så vi kan tælle op til næste Epoke.
