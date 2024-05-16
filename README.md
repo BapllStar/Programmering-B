@@ -1,10 +1,10 @@
-# Christoffer Stæhr Sander's School Projects Repository
+# Bapll's School Projects Repository
 
 ![Sukkertoppen HTX Gymnasium Logo](https://via.ritzau.dk/data/images/00407/02602f54-89dc-47a6-8cd6-69701133393b.png)
 
 ## About Me
 
-Hey there! I'm Christoffer Stæhr Sander, a passionate student at Sukkertoppen HTX Gymnasium in Valby, Denmark. This repository is where I showcase my various school projects from the "Programmering B" class.
+Hey there! I'm Bapll, a passionate student at Sukkertoppen HTX Gymnasium in Valby, Denmark. This repository is where I showcase my various school projects from the "Programmering B" class.
 
 ## Class Details
 
